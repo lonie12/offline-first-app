@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.lonie.testuse"
+    },
+    "ios": {
+      "bundleIdentifier": "com.lonie.testuse"
+    }
   }
 }
