@@ -1,0 +1,42 @@
+<html>
+<head>
+<script src="https://unpkg.com/realm-web@1.2.0/dist/bundle.iife.js"></script>
+<script>
+const APP_ID = "rmdb-abojh";
+const app = new Realm.App({ id: APP_ID});
+//Grab Tokens
+const params = new URLSearchParams(window.location.search);
+const token = params.get('token');
+const tokenId = params.get('tokenId');
+//Confirm client
+app.emailPasswordAuth
+    .confirmUser(token, tokenId)
+    .then(() => displayResult('success'))
+    .catch(err => displayResult('error', err))
+//Display Message depending on result
+function displayResult(result, err) {
+    const message = document.getElementById("message");
+    if (result === "success") {
+        message.innerText = "Your E-mail address has been verified.\n\n You may close this page. Thank you.";
+    }
+   else if (result === "error") {
+       message.innerText = "Unable to register this user. Please try again to register." + err;
+   }
+}
+</script>
+
+<title>E-mail Confirmation</title>
+<style>
+    h1 {text-align: center;}
+    h3 {text-align: center;}
+    h5 {text-align: center; background-color: whitesmoke;}
+    p {text-align: center;}
+    div {text-align: center;}
+</style>
+</head>
+<body>
+    <h1>My Apps Name</h1>
+    <h3>Thanks for choosing our app!</h1>
+    <h5 id = "message"></h5>
+</body>
+</html>
